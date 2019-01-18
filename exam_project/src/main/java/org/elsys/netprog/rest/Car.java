@@ -9,7 +9,7 @@ public class Car {
     public String carReg;
     public Boolean active;
     public String zone;
-    public String due;
+    public Date due;
     public String lastAction;
     private Date beginDate;
 
@@ -25,15 +25,20 @@ public class Car {
         Calendar cal = Calendar.getInstance();
         cal.setTime(beginDate);
         cal.add(Calendar.HOUR, 1); //change current date with 1 hour to make the end date
-        this.due = sdf.format(cal.getTime());
+        this.due = cal.getTime();
     }
 
     public String getZone() {
         return zone;
     }
 
-    public void setZone(String zone) {
-        this.zone = zone;
+    public String getCarReg() {
+        return carReg;
+    }
+
+    public Boolean getActive() {
+        this.active = this.due.after(new Date());
+        return this.active;
     }
 
     @Override
